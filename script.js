@@ -2,7 +2,7 @@
     'use strict';
 
     const VARIABLES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    const PERIODS = ['past', 'present', 'ideal'];
+    const PERIODS = ['past', 'present', 'future'];
     const VARIABLE_NAMES = {
         'A': 'Sexual Attraction',
         'B': 'Sexual Behaviour',
@@ -13,9 +13,82 @@
         'G': 'Self-Identification'
     };
 
-    const BI_BLUE = '#0038A8';
-    const BI_LAVENDER = '#9B4F96';
-    const BI_PINK = '#D60270';
+    const SCALE_AE = [
+        { value: 1, label: 'Other sex only' },
+        { value: 2, label: 'Other sex mostly' },
+        { value: 3, label: 'Other sex somewhat more' },
+        { value: 4, label: 'Both sexes equally' },
+        { value: 5, label: 'Same sex somewhat more' },
+        { value: 6, label: 'Same sex mostly' },
+        { value: 7, label: 'Same sex only' }
+    ];
+
+    const SCALE_FG = [
+        { value: 1, label: 'Heterosexual only' },
+        { value: 2, label: 'Heterosexual mostly' },
+        { value: 3, label: 'Heterosexual somewhat more' },
+        { value: 4, label: 'Heterosexual and homosexual equally' },
+        { value: 5, label: 'Homosexual somewhat more' },
+        { value: 6, label: 'Homosexual mostly' },
+        { value: 7, label: 'Homosexual only' }
+    ];
+
+    const BI_BLUE = { r: 0, g: 56, b: 168 };
+    const BI_LAVENDER = { r: 155, g: 79, b: 150 };
+    const BI_PINK = { r: 214, g: 2, b: 112 };
+
+    let gradientColors = [];
+
+    function calculateGradientColors() {
+        gradientColors = [];
+        for (let i = 1; i <= 7; i++) {
+            const t = (i - 1) / 6;
+            let r, g, b;
+            if (t <= 0.5) {
+                const localT = t * 2;
+                r = Math.round(BI_BLUE.r + (BI_LAVENDER.r - BI_BLUE.r) * localT);
+                g = Math.round(BI_BLUE.g + (BI_LAVENDER.g - BI_BLUE.g) * localT);
+                b = Math.round(BI_BLUE.b + (BI_LAVENDER.b - BI_BLUE.b) * localT);
+            } else {
+                const localT = (t - 0.5) * 2;
+                r = Math.round(BI_LAVENDER.r + (BI_PINK.r - BI_LAVENDER.r) * localT);
+                g = Math.round(BI_LAVENDER.g + (BI_PINK.g - BI_LAVENDER.g) * localT);
+                b = Math.round(BI_LAVENDER.b + (BI_PINK.b - BI_LAVENDER.b) * localT);
+            }
+            gradientColors[i] = { r, g, b };
+        }
+    }
+
+    function getColorForValue(value) {
+        if (Number.isInteger(value) && value >= 1 && value <= 7) {
+            const c = gradientColors[value];
+            return `rgb(${c.r}, ${c.g}, ${c.b})`;
+        }
+        const t = (value - 1) / 6;
+        let r, g, b;
+        if (t <= 0.5) {
+            const localT = t * 2;
+            r = Math.round(BI_BLUE.r + (BI_LAVENDER.r - BI_BLUE.r) * localT);
+            g = Math.round(BI_BLUE.g + (BI_LAVENDER.g - BI_BLUE.g) * localT);
+            b = Math.round(BI_BLUE.b + (BI_LAVENDER.b - BI_BLUE.b) * localT);
+        } else {
+            const localT = (t - 0.5) * 2;
+            r = Math.round(BI_LAVENDER.r + (BI_PINK.r - BI_LAVENDER.r) * localT);
+            g = Math.round(BI_LAVENDER.g + (BI_PINK.g - BI_LAVENDER.g) * localT);
+            b = Math.round(BI_LAVENDER.b + (BI_PINK.b - BI_LAVENDER.b) * localT);
+        }
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function getContrastColor(bgColor) {
+        const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (!match) return 'white';
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        return luminance > 0.5 ? '#1a1a2e' : 'white';
+    }
 
     function getScoreLabel(score) {
         const rounded = Math.round(score * 10) / 10;
@@ -30,38 +103,27 @@
         return 'Homosexual';
     }
 
-    function getColorForValue(value) {
-        const t = (value - 1) / 6;
-        if (t <= 0.5) {
-            return interpolateColor(BI_BLUE, BI_LAVENDER, t * 2);
-        } else {
-            return interpolateColor(BI_LAVENDER, BI_PINK, (t - 0.5) * 2);
-        }
-    }
+    function populateDropdowns() {
+        const questionBlocks = document.querySelectorAll('.question-block');
+        questionBlocks.forEach(function(block) {
+            const scale = block.dataset.scale === 'fg' ? SCALE_FG : SCALE_AE;
+            const selects = block.querySelectorAll('select');
+            selects.forEach(function(select) {
+                const placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = 'Select...';
+                placeholder.disabled = true;
+                placeholder.selected = true;
+                select.appendChild(placeholder);
 
-    function interpolateColor(color1, color2, t) {
-        const r1 = parseInt(color1.slice(1, 3), 16);
-        const g1 = parseInt(color1.slice(3, 5), 16);
-        const b1 = parseInt(color1.slice(5, 7), 16);
-        const r2 = parseInt(color2.slice(1, 3), 16);
-        const g2 = parseInt(color2.slice(3, 5), 16);
-        const b2 = parseInt(color2.slice(5, 7), 16);
-
-        const r = Math.round(r1 + (r2 - r1) * t);
-        const g = Math.round(g1 + (g2 - g1) * t);
-        const b = Math.round(b1 + (b2 - b1) * t);
-
-        return `rgb(${r}, ${g}, ${b})`;
-    }
-
-    function getContrastColor(bgColor) {
-        const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        if (!match) return 'white';
-        const r = parseInt(match[1]);
-        const g = parseInt(match[2]);
-        const b = parseInt(match[3]);
-        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        return luminance > 0.5 ? '#1a1a2e' : 'white';
+                scale.forEach(function(item) {
+                    const option = document.createElement('option');
+                    option.value = item.value;
+                    option.textContent = item.label;
+                    select.appendChild(option);
+                });
+            });
+        });
     }
 
     function collectAnswers() {
@@ -69,9 +131,9 @@
         for (const v of VARIABLES) {
             for (const p of PERIODS) {
                 const name = `${v}-${p}`;
-                const selected = document.querySelector(`input[name="${name}"]:checked`);
-                if (selected) {
-                    answers[name] = parseInt(selected.value);
+                const select = document.querySelector(`select[name="${name}"]`);
+                if (select && select.value) {
+                    answers[name] = parseInt(select.value);
                 }
             }
         }
@@ -108,7 +170,7 @@
     }
 
     function calculateAverages(answers) {
-        const averages = { past: 0, present: 0, ideal: 0 };
+        const averages = { past: 0, present: 0, future: 0 };
         for (const p of PERIODS) {
             let sum = 0;
             for (const v of VARIABLES) {
@@ -116,7 +178,7 @@
             }
             averages[p] = sum / VARIABLES.length;
         }
-        averages.overall = (averages.past + averages.present + averages.ideal) / 3;
+        averages.overall = (averages.past + averages.present + averages.future) / 3;
         return averages;
     }
 
@@ -179,6 +241,9 @@
     }
 
     function init() {
+        calculateGradientColors();
+        populateDropdowns();
+
         const form = document.getElementById('quiz-form');
         const copyBtn = document.getElementById('copy-link-btn');
         const retakeBtn = document.getElementById('retake-btn');

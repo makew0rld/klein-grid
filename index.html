@@ -24,328 +24,136 @@
             </div>
 
             <form id="quiz-form" aria-label="Klein Grid Questionnaire">
-                <div class="question-block" data-variable="A">
+                <div class="question-block" data-variable="A" data-scale="ae">
                     <h2>A. Sexual Attraction</h2>
                     <p class="question-text">To whom are you sexually attracted?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group" role="radiogroup" aria-label="Sexual attraction in the past">
-                                <label><input type="radio" name="A-past" value="1" required><span class="radio-label">1</span><span class="sr-only">other sex only</span></label>
-                                <label><input type="radio" name="A-past" value="2"><span class="radio-label">2</span><span class="sr-only">other sex mostly</span></label>
-                                <label><input type="radio" name="A-past" value="3"><span class="radio-label">3</span><span class="sr-only">other sex somewhat more</span></label>
-                                <label><input type="radio" name="A-past" value="4"><span class="radio-label">4</span><span class="sr-only">both sexes equally</span></label>
-                                <label><input type="radio" name="A-past" value="5"><span class="radio-label">5</span><span class="sr-only">same sex somewhat more</span></label>
-                                <label><input type="radio" name="A-past" value="6"><span class="radio-label">6</span><span class="sr-only">same sex mostly</span></label>
-                                <label><input type="radio" name="A-past" value="7"><span class="radio-label">7</span><span class="sr-only">same sex only</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group" role="radiogroup" aria-label="Sexual attraction in the present">
-                                <label><input type="radio" name="A-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="A-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="A-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="A-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="A-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="A-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="A-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group" role="radiogroup" aria-label="Sexual attraction ideally">
-                                <label><input type="radio" name="A-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="A-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="A-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="A-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="A-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="A-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="A-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="A-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="A-past" name="A-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="A-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="A-present" name="A-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="A-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="A-future" name="A-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="B">
+                <div class="question-block" data-variable="B" data-scale="ae">
                     <h2>B. Sexual Behaviour</h2>
                     <p class="question-text">With whom have you had sex?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="B-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="B-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="B-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="B-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="B-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="B-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="B-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="B-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="B-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="B-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="B-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="B-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="B-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="B-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="B-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="B-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="B-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="B-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="B-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="B-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="B-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="B-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="B-past" name="B-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="B-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="B-present" name="B-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="B-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="B-future" name="B-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="C">
+                <div class="question-block" data-variable="C" data-scale="ae">
                     <h2>C. Sexual Fantasies</h2>
                     <p class="question-text">About whom are your sexual fantasies?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="C-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="C-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="C-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="C-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="C-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="C-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="C-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="C-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="C-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="C-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="C-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="C-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="C-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="C-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="C-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="C-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="C-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="C-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="C-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="C-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="C-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="C-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="C-past" name="C-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="C-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="C-present" name="C-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="C-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="C-future" name="C-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="D">
+                <div class="question-block" data-variable="D" data-scale="ae">
                     <h2>D. Emotional Preference</h2>
                     <p class="question-text">Who do you feel more drawn to or close to emotionally?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="D-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="D-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="D-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="D-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="D-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="D-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="D-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="D-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="D-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="D-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="D-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="D-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="D-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="D-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="D-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="D-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="D-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="D-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="D-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="D-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="D-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="D-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="D-past" name="D-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="D-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="D-present" name="D-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="D-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="D-future" name="D-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="E">
+                <div class="question-block" data-variable="E" data-scale="ae">
                     <h2>E. Social Preference</h2>
                     <p class="question-text">Which gender do you socialize with?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="E-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="E-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="E-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="E-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="E-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="E-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="E-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="E-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="E-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="E-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="E-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="E-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="E-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="E-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="E-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="E-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="E-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="E-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="E-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="E-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="E-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="E-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="E-past" name="E-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="E-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="E-present" name="E-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="E-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="E-future" name="E-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="F">
+                <div class="question-block" data-variable="F" data-scale="fg">
                     <h2>F. Lifestyle Preference</h2>
                     <p class="question-text">In which community do you like to spend your time? In which do you feel most comfortable?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="F-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="F-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="F-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="F-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="F-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="F-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="F-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="F-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="F-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="F-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="F-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="F-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="F-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="F-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="F-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="F-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="F-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="F-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="F-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="F-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="F-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
+                        <div class="time-period">
+                            <label for="F-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="F-past" name="F-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="F-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="F-present" name="F-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="F-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="F-future" name="F-future" required></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="question-block" data-variable="G">
+                <div class="question-block" data-variable="G" data-scale="fg">
                     <h2>G. Self-Identification</h2>
                     <p class="question-text">How do you label or identify yourself?</p>
                     <div class="time-periods">
-                        <fieldset>
-                            <legend>Past <span class="time-desc">(adolescence to one year ago)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="G-past" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="G-past" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="G-past" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="G-past" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="G-past" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="G-past" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="G-past" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Present <span class="time-desc">(last 12 months)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="G-present" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="G-present" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="G-present" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="G-present" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="G-present" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="G-present" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="G-present" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Ideal <span class="time-desc">(what you would choose)</span></legend>
-                            <div class="radio-group">
-                                <label><input type="radio" name="G-ideal" value="1" required><span class="radio-label">1</span></label>
-                                <label><input type="radio" name="G-ideal" value="2"><span class="radio-label">2</span></label>
-                                <label><input type="radio" name="G-ideal" value="3"><span class="radio-label">3</span></label>
-                                <label><input type="radio" name="G-ideal" value="4"><span class="radio-label">4</span></label>
-                                <label><input type="radio" name="G-ideal" value="5"><span class="radio-label">5</span></label>
-                                <label><input type="radio" name="G-ideal" value="6"><span class="radio-label">6</span></label>
-                                <label><input type="radio" name="G-ideal" value="7"><span class="radio-label">7</span></label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <div class="scale-reference">
-                    <h3>Scale Reference</h3>
-                    <p class="scale-note">For questions A-E (attraction, behaviour, fantasies, emotional preference, social preference):</p>
-                    <div class="scale-items scale-ae">
-                        <span class="scale-item" data-value="1">1: other sex only</span>
-                        <span class="scale-item" data-value="2">2: other sex mostly</span>
-                        <span class="scale-item" data-value="3">3: other sex somewhat more</span>
-                        <span class="scale-item" data-value="4">4: both sexes equally</span>
-                        <span class="scale-item" data-value="5">5: same sex somewhat more</span>
-                        <span class="scale-item" data-value="6">6: same sex mostly</span>
-                        <span class="scale-item" data-value="7">7: same sex only</span>
-                    </div>
-                    <p class="scale-note">For questions F-G (lifestyle preference, self-identification):</p>
-                    <div class="scale-items scale-fg">
-                        <span class="scale-item" data-value="1">1: heterosexual only</span>
-                        <span class="scale-item" data-value="2">2: heterosexual mostly</span>
-                        <span class="scale-item" data-value="3">3: heterosexual somewhat more</span>
-                        <span class="scale-item" data-value="4">4: heterosexual/homosexual equally</span>
-                        <span class="scale-item" data-value="5">5: homosexual somewhat more</span>
-                        <span class="scale-item" data-value="6">6: homosexual mostly</span>
-                        <span class="scale-item" data-value="7">7: homosexual only</span>
+                        <div class="time-period">
+                            <label for="G-past">Past <span class="time-desc">(adolescence to one year ago)</span></label>
+                            <select id="G-past" name="G-past" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="G-present">Present <span class="time-desc">(last 12 months)</span></label>
+                            <select id="G-present" name="G-present" required></select>
+                        </div>
+                        <div class="time-period">
+                            <label for="G-future">Future <span class="time-desc">(what you would choose)</span></label>
+                            <select id="G-future" name="G-future" required></select>
+                        </div>
                     </div>
                 </div>
 
@@ -388,7 +196,7 @@
                             <th scope="col">Variable</th>
                             <th scope="col">Past</th>
                             <th scope="col">Present</th>
-                            <th scope="col">Ideal</th>
+                            <th scope="col">Future</th>
                         </tr>
                     </thead>
                     <tbody id="results-body">
@@ -398,7 +206,7 @@
                             <th scope="row">Average</th>
                             <td id="avg-past"></td>
                             <td id="avg-present"></td>
-                            <td id="avg-ideal"></td>
+                            <td id="avg-future"></td>
                         </tr>
                         <tr class="overall-row">
                             <th scope="row">Overall</th>
