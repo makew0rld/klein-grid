@@ -161,13 +161,13 @@
         for (const p of PERIODS) {
             const cell = document.getElementById(`avg-${p}`);
             const avg = averages[p];
-            cell.textContent = getScoreLabel(avg);
+            cell.innerHTML = `${getScoreLabel(avg)}<span class="score-number">${avg.toFixed(1)}</span>`;
             cell.style.backgroundColor = getColorForValue(avg);
         }
 
         const overallCell = document.getElementById('overall-score');
         const overall = averages.overall;
-        overallCell.textContent = getScoreLabel(overall);
+        overallCell.innerHTML = `${getScoreLabel(overall)}<span class="score-number">${overall.toFixed(1)}</span>`;
         overallCell.style.backgroundColor = getColorForValue(overall);
 
         document.getElementById('quiz-section').classList.add('hidden');
