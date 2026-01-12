@@ -93,32 +93,54 @@
     }
 
     function answersToHash(answers) {
-        let hash = '';
+        let str = '';
         for (const v of VARIABLES) {
             for (const p of PERIODS) {
                 const name = `${v}-${p}`;
-                hash += answers[name] || '0';
+                str += answers[name] || '0';
             }
         }
-        return hash;
+        const num = BigInt(str);
+        let hex = num.toString(16);
+        if (hex.length % 2) hex = '0' + hex;
+        const bytes = [];
+        for (let i = 0; i < hex.length; i += 2) {
+            bytes.push(parseInt(hex.substring(i, i + 2), 16));
+        }
+        return btoa(String.fromCharCode.apply(null, bytes));
     }
 
     function hashToAnswers(hash) {
-        if (!hash || hash.length !== 21) return null;
-        const answers = {};
-        let i = 0;
-        for (const v of VARIABLES) {
-            for (const p of PERIODS) {
-                const val = parseInt(hash[i]);
-                if (val >= 1 && val <= 7) {
-                    answers[`${v}-${p}`] = val;
-                } else {
-                    return null;
-                }
-                i++;
+        if (!hash) return null;
+        try {
+            const binary = atob(hash);
+            let hex = '';
+            for (let i = 0; i < binary.length; i++) {
+                hex += ('0' + binary.charCodeAt(i).toString(16)).slice(-2);
             }
+            const num = BigInt('0x' + hex);
+            let str = num.toString();
+            str = str.padStart(21, '0');
+
+            if (str.length !== 21) return null;
+
+            const answers = {};
+            let i = 0;
+            for (const v of VARIABLES) {
+                for (const p of PERIODS) {
+                    const val = parseInt(str[i]);
+                    if (val >= 1 && val <= 7) {
+                        answers[`${v}-${p}`] = val;
+                    } else {
+                        return null;
+                    }
+                    i++;
+                }
+            }
+            return answers;
+        } catch (e) {
+            return null;
         }
-        return answers;
     }
 
     function calculateAverages(answers) {
