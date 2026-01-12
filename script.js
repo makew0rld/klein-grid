@@ -103,20 +103,20 @@
         const num = BigInt(str);
         let hex = num.toString(16);
         if (hex.length % 2) hex = '0' + hex;
-        const bytes = [];
+        const bytes = new Uint8Array(hex.length / 2);
         for (let i = 0; i < hex.length; i += 2) {
-            bytes.push(parseInt(hex.substring(i, i + 2), 16));
+            bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
         }
-        return btoa(String.fromCharCode.apply(null, bytes));
+        return bytes.toBase64({ alphabet: 'base64url' });
     }
 
     function hashToAnswers(hash) {
         if (!hash) return null;
         try {
-            const binary = atob(hash);
+            const bytes = Uint8Array.fromBase64(hash, { alphabet: 'base64url' });
             let hex = '';
-            for (let i = 0; i < binary.length; i++) {
-                hex += ('0' + binary.charCodeAt(i).toString(16)).slice(-2);
+            for (let i = 0; i < bytes.length; i++) {
+                hex += ('0' + bytes[i].toString(16)).slice(-2);
             }
             const num = BigInt('0x' + hex);
             let str = num.toString();
