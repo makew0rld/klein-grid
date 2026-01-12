@@ -290,27 +290,11 @@ select option {
 }
 
 .legend-descriptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
     font-size: 0.75rem;
     color: var(--text-muted);
-}
-
-.legend-descriptions-wide {
-    display: flex;
-    justify-content: space-between;
-}
-
-.legend-descriptions-wide span:nth-child(2) {
-    text-align: center;
-}
-
-.legend-descriptions-wide span:last-child {
-    text-align: right;
-}
-
-.legend-descriptions-narrow {
-    display: none;
-    flex-direction: column;
-    gap: 0.25rem;
 }
 
 .results-table-container {
@@ -361,6 +345,8 @@ select option {
 .results-table tfoot td {
     font-weight: 600;
     color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .averages-row td,
@@ -409,21 +395,29 @@ footer .privacy {
         font-size: 1.5rem;
     }
 
-    .legend-descriptions-wide {
-        display: none;
-    }
-
-    .legend-descriptions-narrow {
+    #results-section {
         display: flex;
+        flex-direction: column;
     }
 
     .results-header {
         flex-direction: column;
         align-items: stretch;
+        order: 10;
+        margin-bottom: 0;
+        margin-top: 1.5rem;
     }
 
     .results-header h2 {
-        text-align: center;
+        display: none;
+    }
+
+    .scale-legend {
+        order: 1;
+    }
+
+    .results-table-container {
+        order: 2;
     }
 
     .results-table thead th {
