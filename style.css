@@ -286,12 +286,7 @@ select option {
 .legend-gradient {
     height: 1.5rem;
     border-radius: 4px;
-    background: linear-gradient(
-        to right,
-        var(--bi-blue) 0%,
-        var(--bi-lavender) 50%,
-        var(--bi-pink) 100%
-    );
+    background: linear-gradient(in oklch to right, var(--bi-blue), var(--bi-pink));
 }
 
 .legend-descriptions {
@@ -340,10 +335,12 @@ select option {
 .results-table tbody td {
     font-weight: 600;
     font-size: 1.125rem;
+    color: white;
 }
 
 .results-table tfoot td {
     font-weight: 600;
+    color: white;
 }
 
 .averages-row td,

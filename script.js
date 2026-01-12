@@ -33,61 +33,10 @@
         { value: 7, label: 'Homosexual only' }
     ];
 
-    const BI_BLUE = { r: 0, g: 56, b: 168 };
-    const BI_LAVENDER = { r: 155, g: 79, b: 150 };
-    const BI_PINK = { r: 214, g: 2, b: 112 };
-
-    let gradientColors = [];
-
-    function calculateGradientColors() {
-        gradientColors = [];
-        for (let i = 1; i <= 7; i++) {
-            const t = (i - 1) / 6;
-            let r, g, b;
-            if (t <= 0.5) {
-                const localT = t * 2;
-                r = Math.round(BI_BLUE.r + (BI_LAVENDER.r - BI_BLUE.r) * localT);
-                g = Math.round(BI_BLUE.g + (BI_LAVENDER.g - BI_BLUE.g) * localT);
-                b = Math.round(BI_BLUE.b + (BI_LAVENDER.b - BI_BLUE.b) * localT);
-            } else {
-                const localT = (t - 0.5) * 2;
-                r = Math.round(BI_LAVENDER.r + (BI_PINK.r - BI_LAVENDER.r) * localT);
-                g = Math.round(BI_LAVENDER.g + (BI_PINK.g - BI_LAVENDER.g) * localT);
-                b = Math.round(BI_LAVENDER.b + (BI_PINK.b - BI_LAVENDER.b) * localT);
-            }
-            gradientColors[i] = { r, g, b };
-        }
-    }
-
     function getColorForValue(value) {
-        if (Number.isInteger(value) && value >= 1 && value <= 7) {
-            const c = gradientColors[value];
-            return `rgb(${c.r}, ${c.g}, ${c.b})`;
-        }
         const t = (value - 1) / 6;
-        let r, g, b;
-        if (t <= 0.5) {
-            const localT = t * 2;
-            r = Math.round(BI_BLUE.r + (BI_LAVENDER.r - BI_BLUE.r) * localT);
-            g = Math.round(BI_BLUE.g + (BI_LAVENDER.g - BI_BLUE.g) * localT);
-            b = Math.round(BI_BLUE.b + (BI_LAVENDER.b - BI_BLUE.b) * localT);
-        } else {
-            const localT = (t - 0.5) * 2;
-            r = Math.round(BI_LAVENDER.r + (BI_PINK.r - BI_LAVENDER.r) * localT);
-            g = Math.round(BI_LAVENDER.g + (BI_PINK.g - BI_LAVENDER.g) * localT);
-            b = Math.round(BI_LAVENDER.b + (BI_PINK.b - BI_LAVENDER.b) * localT);
-        }
-        return `rgb(${r}, ${g}, ${b})`;
-    }
-
-    function getContrastColor(bgColor) {
-        const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        if (!match) return 'white';
-        const r = parseInt(match[1]);
-        const g = parseInt(match[2]);
-        const b = parseInt(match[3]);
-        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        return luminance > 0.5 ? '#1a1a2e' : 'white';
+        const pct = Math.round(t * 100);
+        return `color-mix(in oklch, var(--bi-pink) ${pct}%, var(--bi-blue))`;
     }
 
     function getScoreLabel(score) {
@@ -197,9 +146,7 @@
                 const td = document.createElement('td');
                 const value = answers[`${v}-${p}`];
                 td.textContent = value;
-                const bgColor = getColorForValue(value);
-                td.style.backgroundColor = bgColor;
-                td.style.color = getContrastColor(bgColor);
+                td.style.backgroundColor = getColorForValue(value);
                 row.appendChild(td);
             }
 
@@ -212,17 +159,13 @@
             const cell = document.getElementById(`avg-${p}`);
             const avg = averages[p];
             cell.textContent = `${avg.toFixed(1)} - ${getScoreLabel(avg)}`;
-            const bgColor = getColorForValue(avg);
-            cell.style.backgroundColor = bgColor;
-            cell.style.color = getContrastColor(bgColor);
+            cell.style.backgroundColor = getColorForValue(avg);
         }
 
         const overallCell = document.getElementById('overall-score');
         const overall = averages.overall;
         overallCell.textContent = `${overall.toFixed(2)} - ${getScoreLabel(overall)}`;
-        const bgColor = getColorForValue(overall);
-        overallCell.style.backgroundColor = bgColor;
-        overallCell.style.color = getContrastColor(bgColor);
+        overallCell.style.backgroundColor = getColorForValue(overall);
 
         document.getElementById('quiz-section').classList.add('hidden');
         document.getElementById('results-section').classList.remove('hidden');
@@ -241,7 +184,6 @@
     }
 
     function init() {
-        calculateGradientColors();
         populateDropdowns();
 
         const form = document.getElementById('quiz-form');
