@@ -286,7 +286,7 @@ select option {
 .legend-gradient {
     height: 1.5rem;
     border-radius: 4px;
-    background: linear-gradient(in oklch to right, var(--bi-blue), var(--bi-pink));
+    background: linear-gradient(in oklch to right, var(--bi-blue), var(--bi-lavender), var(--bi-pink));
 }
 
 .legend-descriptions {

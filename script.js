@@ -35,8 +35,13 @@
 
     function getColorForValue(value) {
         const t = (value - 1) / 6;
-        const pct = Math.round(t * 100);
-        return `color-mix(in oklch, var(--bi-pink) ${pct}%, var(--bi-blue))`;
+        if (t <= 0.5) {
+            const pct = Math.round(t * 2 * 100);
+            return `color-mix(in oklch, var(--bi-lavender) ${pct}%, var(--bi-blue))`;
+        } else {
+            const pct = Math.round((t - 0.5) * 2 * 100);
+            return `color-mix(in oklch, var(--bi-pink) ${pct}%, var(--bi-lavender))`;
+        }
     }
 
     function getScoreLabel(score) {
