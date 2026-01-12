@@ -45,16 +45,14 @@
     }
 
     function getScoreLabel(score) {
-        const rounded = Math.round(score * 10) / 10;
-        if (rounded <= 1.3) return 'Heterosexual';
-        if (rounded <= 2.0) return 'Mostly Heterosexual';
-        if (rounded <= 2.7) return 'Hetero-leaning Bisexual';
-        if (rounded <= 3.3) return 'Bi: Heterosexual Leaning';
-        if (rounded <= 4.0) return 'Bisexual';
-        if (rounded <= 4.7) return 'Bi: Homosexual Leaning';
-        if (rounded <= 5.3) return 'Homo-leaning Bisexual';
-        if (rounded <= 6.0) return 'Mostly Homosexual';
-        return 'Homosexual';
+        const rounded = Math.round(score)
+        if (rounded == 1) return 'Heterosexual';
+        if (rounded == 2) return 'Bi: Mostly Heterosexual';
+        if (rounded == 3) return 'Bi: Heterosexual Leaning';
+        if (rounded == 4) return 'Bisexual';
+        if (rounded == 5) return 'Bi: Homosexual Leaning';
+        if (rounded == 6) return 'Bi: Mostly Homosexual';
+        return 'Homosexual'; // 7
     }
 
     function populateDropdowns() {
