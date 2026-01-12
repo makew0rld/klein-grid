@@ -65,7 +65,7 @@
                 placeholder.value = '';
                 placeholder.textContent = 'Select...';
                 placeholder.disabled = true;
-                placeholder.selected = true;
+                placeholder.setAttribute("selected", "")
                 select.appendChild(placeholder);
 
                 scale.forEach(function(item) {
