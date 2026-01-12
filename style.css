@@ -290,18 +290,27 @@ select option {
 }
 
 .legend-descriptions {
-    display: flex;
-    justify-content: space-between;
     font-size: 0.75rem;
     color: var(--text-muted);
 }
 
-.legend-descriptions span:nth-child(2) {
+.legend-descriptions-wide {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legend-descriptions-wide span:nth-child(2) {
     text-align: center;
 }
 
-.legend-descriptions span:last-child {
+.legend-descriptions-wide span:last-child {
     text-align: right;
+}
+
+.legend-descriptions-narrow {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .results-table-container {
@@ -314,6 +323,15 @@ select option {
     background-color: var(--bg-card);
     border-radius: 8px;
     overflow: hidden;
+    table-layout: fixed;
+}
+
+.results-table colgroup col:first-child {
+    width: 40%;
+}
+
+.results-table colgroup col {
+    width: 20%;
 }
 
 .results-table th,
@@ -323,13 +341,15 @@ select option {
     border: 1px solid var(--border-color);
 }
 
-.results-table th {
+.results-table thead th {
     background-color: var(--bg-secondary);
     font-weight: 600;
 }
 
 .results-table th[scope="row"] {
     text-align: left;
+    background-color: var(--bg-secondary);
+    font-weight: 600;
 }
 
 .results-table tbody td {
@@ -389,13 +409,12 @@ footer .privacy {
         font-size: 1.5rem;
     }
 
-    .legend-descriptions {
-        flex-direction: column;
-        gap: 0.25rem;
+    .legend-descriptions-wide {
+        display: none;
     }
 
-    .legend-descriptions span {
-        text-align: left !important;
+    .legend-descriptions-narrow {
+        display: flex;
     }
 
     .results-header {
@@ -405,6 +424,16 @@ footer .privacy {
 
     .results-header h2 {
         text-align: center;
+    }
+
+    .results-table thead th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.25rem;
+    }
+
+    .results-table th,
+    .results-table td {
+        padding: 0.5rem 0.25rem;
     }
 }
 
